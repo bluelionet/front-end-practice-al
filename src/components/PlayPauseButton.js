@@ -1,18 +1,11 @@
-import { useState } from 'react';
 import { IconContext } from "react-icons";
-import { MdPlayArrow, MdPause } from "react-icons/md";
+import { MdPause, MdPlayArrow } from "react-icons/md";
 
-export default function PlayPauseButton() {
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  function toggleIsPlaying() {
-    setIsPlaying(prevIsPlaying => !prevIsPlaying);
-  }
-
+export default function PlayPauseButton({ isPlaying, onClick }) {
   return (
-    <button type="button" onClick={toggleIsPlaying} className="control-button">
+    <button type="button" onClick={onClick} className="control-button">
       <IconContext.Provider value={{ color: '#fff', size: '24px' }}>
-        {isPlaying ? <MdPlayArrow /> : <MdPause />}
+        {isPlaying ? <MdPause /> : <MdPlayArrow />}
       </IconContext.Provider>
     </button>
   );

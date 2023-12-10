@@ -1,9 +1,14 @@
+import { useRef, useState } from 'react';
 import YouTube from 'react-youtube';
 import PlayPauseButton from './PlayPauseButton.js';
 import MuteUnmuteButton from './MuteUnmuteButton.js';
 import ActionButton from './ActionButton.js';
 
 export default function Short({ videoId }) {
+  const playerRef = useRef(undefined);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+
   return (
     <div className="short">
       {/* Youtube video iframe */}
@@ -19,13 +24,39 @@ export default function Short({ videoId }) {
             playlist: videoId,
           },
         }}
+        onReady={e => {
+          playerRef.current = e.target;
+        }}
+        onStateChange={e => {
+          setIsPlaying(e.data === YouTube.PlayerState.BUFFERING || e.data === YouTube.PlayerState.PLAYING);
+        }}
         className="short__video"
       />
 
       {/* Control buttons on top of video iframe */}
       <div className="short__control-buttons">
-        <PlayPauseButton />
-        <MuteUnmuteButton />
+        <PlayPauseButton
+          isPlaying={isPlaying}
+          onClick={() => {
+            if (isPlaying) {
+              playerRef.current.pauseVideo();
+            } else {
+              playerRef.current.playVideo();
+            }
+          }}
+        />
+        <MuteUnmuteButton
+          isMuted={isMuted}
+          onClick={() => {
+            if (isMuted) {
+              playerRef.current.unMute();
+              setIsMuted(false);
+            } else {
+              playerRef.current.mute();
+              setIsMuted(true);
+            }
+          }}
+        />
       </div>
 
       {/* Action buttons beside video iframe */}
