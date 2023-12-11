@@ -6,7 +6,15 @@ import ActionButton from './ActionButton.js';
 
 export default function Short({ videoId, index, activeIndex, isMutedGlobally, setIsMutedGlobally }) {
   const playerRef = useRef(undefined);
+  const [shouldRender, setShouldRender] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  // Set `shouldRender` to `true` when it's about to be seen.
+  useEffect(() => {
+    if (index <= activeIndex + 2) {
+      setShouldRender(true);
+    }
+  }, [index, activeIndex]);
 
   // Auto-play/pause video according to slide activeness.
   useEffect(() => {
@@ -24,7 +32,8 @@ export default function Short({ videoId, index, activeIndex, isMutedGlobally, se
     }
   }, [index, activeIndex, isMutedGlobally]);
 
-  return (
+  // Render self only when `shouldRender` becomes `true`.
+  return shouldRender && (
     <div className="short">
       {/* Youtube video iframe */}
       <YouTube
