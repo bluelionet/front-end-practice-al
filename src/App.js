@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import Short from './components/Short.js';
-import './App.css';
-
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel } from 'swiper/modules';
+import Short from './components/Short.js';
+import './App.css';
 import 'swiper/css';
 import 'swiper/css/mousewheel';
 
 function App() {
   const [videoIds, setVideoIds] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     async function fetchShortsData() {
@@ -40,10 +40,13 @@ function App() {
       spaceBetween={24}
       centeredSlides
       mousewheel={{ forceToAxis: true }}
+      onActiveIndexChange={swiper => {
+        setActiveIndex(swiper.activeIndex);
+      }}
     >
-      {videoIds.map(videoId => (
+      {videoIds.map((videoId, index) => (
         <SwiperSlide key={videoId}>
-          <Short videoId={videoId} />
+          <Short videoId={videoId} index={index} activeIndex={activeIndex} />
         </SwiperSlide>
       ))}
     </Swiper>
