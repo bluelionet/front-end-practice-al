@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Mousewheel } from 'swiper/modules';
 import Short from './components/Short.js';
 import './App.css';
 import 'swiper/css';
-import 'swiper/css/mousewheel';
 
 function App() {
   const [videoIds, setVideoIds] = useState([]);
@@ -34,12 +32,10 @@ function App() {
   // render Shorts from "videoIds".
   return (
     <Swiper
-      modules={[Mousewheel]}
       direction="vertical"
       slidesPerView="auto"
       spaceBetween={24}
       centeredSlides
-      mousewheel={{ forceToAxis: true }}
       onActiveIndexChange={swiper => {
         setActiveIndex(swiper.activeIndex);
       }}
