@@ -1,6 +1,6 @@
 # Introduction
 
-This is a front-end practice which mimics the look-and-feel (in dark mode) and behavior of the YouTube Shorts page. It displays the most recent Shorts from channel [THE FIRST TAKE](https://www.youtube.com/@The_FirstTake/shorts).
+This is a front-end practice which mimics the look-and-feel and behavior of the YouTube Shorts page in dark mode using **React**. It displays the most recent Shorts from channel [THE FIRST TAKE](https://www.youtube.com/@The_FirstTake/shorts).
 
 You can:
 
@@ -32,17 +32,17 @@ https://front-end-practice-al.vercel.app/
 - `/src/components/Short.js`: YouTube Short component. (Renders video iframe and all buttons.)
 - `/src/components/PlayPauseButton.js`: Play/pause button component.
 - `/src/components/MuteUnmuteButton.js`: Mute/un-mute button component.
-- `/src/components/ActionButton.js`: Action button component. (Renders buttons besides video iframe. Ex: like button, dislike button, comment button, etc.)
+- `/src/components/ActionButton.js`: Action button component. (Renders buttons besides video iframe, e.g., like button, dislike button, comment button.)
 
 # Things To Be Refined
 
-- Hide play/pause button and mute/un-mute button of inactive videos.
-- Refine layout on mobile device.
-- Implement look-and-feel in light mode.
-- Implement light mode/dark mode switch.
-- Implement mouse wheel control. (Swiper's mouse wheel control becomes buggy when used with iframe.)
-- Load more videos while reaching the last/the 50th video. (YouTube Data API's search request can only retrieve 50 results at most per request.)
-- Remove redundant create-react-app files and update favicon, page title, etc.
+- [ ] Hide play/pause button and mute/un-mute button of inactive videos.
+- [ ] Refine layout on mobile device.
+- [ ] Implement look-and-feel in light mode.
+- [ ] Implement light mode/dark mode switch.
+- [ ] Implement mouse wheel control. (Swiper's mouse wheel control becomes buggy when used with iframe.)
+- [ ] Load more videos while reaching the last/the 50th video. (YouTube Data API's search request can only retrieve 50 results at most per request.)
+- [ ] Remove redundant create-react-app files and update favicon, page title, etc.
 
 # References
 
