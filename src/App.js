@@ -37,6 +37,7 @@ function App() {
       slidesPerView="auto"
       spaceBetween={24}
       centeredSlides
+      grabCursor
       onActiveIndexChange={swiper => {
         setActiveIndex(swiper.activeIndex);
       }}
