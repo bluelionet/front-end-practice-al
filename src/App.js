@@ -7,6 +7,7 @@ import 'swiper/css';
 function App() {
   const [videoIds, setVideoIds] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMutedGlobally, setIsMutedGlobally] = useState(true);
 
   useEffect(() => {
     async function fetchShortsData() {
@@ -42,7 +43,13 @@ function App() {
     >
       {videoIds.map((videoId, index) => (
         <SwiperSlide key={videoId}>
-          <Short videoId={videoId} index={index} activeIndex={activeIndex} />
+          <Short
+            videoId={videoId}
+            index={index}
+            activeIndex={activeIndex}
+            isMutedGlobally={isMutedGlobally}
+            setIsMutedGlobally={setIsMutedGlobally}
+          />
         </SwiperSlide>
       ))}
     </Swiper>

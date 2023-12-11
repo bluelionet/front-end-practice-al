@@ -4,21 +4,25 @@ import PlayPauseButton from './PlayPauseButton.js';
 import MuteUnmuteButton from './MuteUnmuteButton.js';
 import ActionButton from './ActionButton.js';
 
-export default function Short({ videoId, index, activeIndex }) {
+export default function Short({ videoId, index, activeIndex, isMutedGlobally, setIsMutedGlobally }) {
   const playerRef = useRef(undefined);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
 
   // Auto-play/pause video according to slide activeness.
   useEffect(() => {
     if (playerRef.current) {
       if (index === activeIndex) {
+        if (isMutedGlobally) {
+          playerRef.current.mute();
+        } else {
+          playerRef.current.unMute();
+        }
         playerRef.current.playVideo();
       } else {
         playerRef.current.pauseVideo();
       }
     }
-  }, [index, activeIndex]);
+  }, [index, activeIndex, isMutedGlobally]);
 
   return (
     <div className="short">
@@ -43,7 +47,6 @@ export default function Short({ videoId, index, activeIndex }) {
           if (index === 0) {
             playerRef.current.mute();
             playerRef.current.playVideo();
-            setIsMuted(true);
           }
         }}
         onStateChange={e => {
@@ -65,14 +68,14 @@ export default function Short({ videoId, index, activeIndex }) {
           }}
         />
         <MuteUnmuteButton
-          isMuted={isMuted}
+          isMuted={isMutedGlobally}
           onClick={() => {
-            if (isMuted) {
+            if (isMutedGlobally) {
               playerRef.current.unMute();
-              setIsMuted(false);
+              setIsMutedGlobally(false);
             } else {
               playerRef.current.mute();
-              setIsMuted(true);
+              setIsMutedGlobally(true);
             }
           }}
         />
