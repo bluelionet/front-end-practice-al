@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a front-end practice which mimics the look-and-feel (in dark mode) and behavior of the YouTube Shorts page. It displays the most recent Shorts from channel [THE FIRST TAKE](https://www.youtube.com/@The_FirstTake/shorts).
 
-## Available Scripts
+You can:
 
-In the project directory, you can run:
+- **Drag-and-drop vertically** (on anywhere except the video iframe) to switch to previous/next video.
+- **Click the play/pause button** (on the top-left corner of video iframe) to play/pause current video.
+- **Click the mute/un-mute button** (on the top-right corner of video iframe) to mute/un-mute all videos.
 
-### `npm start`
+# Live Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+https://front-end-practice-al.vercel.app/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Installation
 
-### `npm test`
+1. `git clone` repository to your local environment.
+1. `npm install` to install packages.
+1. Obtain an **API Key** which has access to the **YouTube Data API v3**. (Read instructions [here](https://developers.google.com/youtube/v3/getting-started#before-you-start).)
+1. Create an `.env.local` file under the repository's root folder. Type in `REACT_APP_YOUTUBE_DATA_API_KEY=` followed by your **API Key** and save. For example:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    ```env
+    REACT_APP_YOUTUBE_DATA_API_KEY=paste_your_api_key_here
+    ```
 
-### `npm run build`
+1. `npm start` and this practice should show up!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Source Files Explanation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `/src/App.js`: Root component.
+- `/src/App.css`: Root CSS file.
+- `/src/components/Short.js`: YouTube Short component. (Renders video iframe and all buttons.)
+- `/src/components/PlayPauseButton.js`: Play/pause button component.
+- `/src/components/MuteUnmuteButton.js`: Mute/un-mute button component.
+- `/src/components/ActionButton.js`: Action button component. (Renders buttons besides video iframe. Ex: like button, dislike button, comment button, etc.)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Things To Be Refined
 
-### `npm run eject`
+- Hide play/pause button and mute/un-mute button of inactive videos.
+- Refine layout on mobile device.
+- Implement look-and-feel in light mode.
+- Implement light mode/dark mode switch.
+- Implement mouse wheel control. (Swiper's mouse wheel control becomes buggy when used with iframe.)
+- Load more videos while reaching the last/the 50th video. (YouTube Data API's search request can only retrieve 50 results at most per request.)
+- Remove redundant create-react-app files and update favicon, page title, etc.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# References
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [YouTube Data API](https://developers.google.com/youtube/v3)
+- [YouTube IFrame Player API](https://developers.google.com/youtube/iframe_api_reference)
+- [react\-youtube](https://github.com/tjallingt/react-youtube)
+- [Swiper](https://swiperjs.com/)
